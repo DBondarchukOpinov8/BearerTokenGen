@@ -1,0 +1,49 @@
+﻿@model BearerTokenParamsModel
+
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome!</h1>
+    <h2 class="display-4">Let's create a new bearer token.</h2>
+</div>
+
+<div class="col-md-12">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            @Html.LabelFor(x => x.SigningKey, "Signing key:", new { @class = "input-group-text" })
+        </div>
+        @Html.TextBoxFor(x => x.SigningKey, new { @class = "form-control signing_key", @placeholder = "S1gning!KeyForExapl3" })
+    </div>
+    <div class="alert alert-warning" role="alert">
+        <b>Signing Key</b> length should be minimum 16 symbols.
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            @Html.LabelFor(x => x.ValidIssuer, "Valid issuer:", new { @class = "input-group-text" })
+        </div>
+        @Html.TextBoxFor(x => x.ValidIssuer, new { @class = "form-control valid_issuer", @placeholder = "issuer@example.com" })
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            @Html.LabelFor(x => x.ValidAudience, "Valid audience:", new { @class = "input-group-text" })
+        </div>
+        @Html.TextBoxFor(x => x.ValidAudience, new { @class = "form-control valid_audience", @placeholder = "https://audience.example.com" })
+    </div>
+    <div class="col-md-12" id="bearer_div">
+        @Html.Label("BearerToken", "Bearer token:")
+        <div class="alert alert-success bearer_token" role="alert" style="word-wrap: break-word"></div>
+    </div>
+    <div class="col-md-12" id="bearer_div_error">
+        @Html.Label("Error", "Error:")
+        <div class="alert alert-danger error_token" role="alert" style="word-wrap: break-word"></div>
+    </div>
+    <button type="button" class="btn btn-success create_token">Create token</button>
+</div>
+
+<script src="~/js/bearerToken.js"></script>
